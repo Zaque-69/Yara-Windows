@@ -1,16 +1,19 @@
-rule s7ev3n {
+rule Windows_s7ev3n_ransomware {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "13/12/2024"
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "4050EB272639231DA4D511C2A6105BEA1BAEA7C9A7FBAC77DB895802230DD6671"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/7ev3n.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A }
 
             // COMSPEC.cmd.exe./c..m.s.c.o.r.e.e...d.l.l
         	$a1 = { 43 4F 4D 53 50 45 43 00 63 6D 64 2E 65 78 65 00 2F 63 00 00 6D 00 73 00 63 00 6F 00 72 00 65 00 65 00 2E 00 64 00 6C 00 6C }
 
-            // com..exe..bat..cmd
-        	$a2 = { 63 6F 6D 00 2E 65 78 65 00 2E 62 61 74 00 2E 63 6D 64 }
+            // \Windows\System32\SCHTASKS.exe
+            $a2 = { 5C 57 69 6E 64 6F 77 73 5C 53 79 73 74 65 6D 33 32 5C 53 43 48 54 41 53 4B 53 2E 65 78 65 }
 
             // All your documents, photos, databases, office projects
         	$a3 = { 41 6C 6C 20 79 6F 75 72 20 64 6F 63 75 6D 65 6E 74 73 2C 20 70 68 6F 74 6F 73 2C 20 64 61 74 61 62 61 73 65 73 2C 20 6F 66 66 69 63 65 20 70 72 6F 6A 65 63 74 73 }
@@ -36,11 +39,7 @@ rule s7ev3n {
             // \%username%.SystemDrive.\Users\.\AppData\Local\.system.exe..del.bat.@echo off
             $a10 = { 5C 25 75 73 65 72 6E 61 6D 65 25 00 53 79 73 74 65 6D 44 72 69 76 65 00 5C 55 73 65 72 73 5C 00 5C 41 70 70 44 61 74 61 5C 4C 6F 63 61 6C 5C 00 73 79 73 74 65 6D 2E 65 78 65 00 00 64 65 6C 2E 62 61 74 00 40 65 63 68 6F 20 6F 66 66 0A }
 
-            // \Windows\System32\SCHTASKS.exe
-            $a11 = { 5C 57 69 6E 64 6F 77 73 5C 53 79 73 74 65 6D 33 32 5C 53 43 48 54 41 53 4B 53 2E 65 78 65 }
-
     condition : 
-        ( $header at 0 ) 
-        and 9 of ( $a* ) 
+        6 of ( $a* ) 
         and filesize < 400KB
 }

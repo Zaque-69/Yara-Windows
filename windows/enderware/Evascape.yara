@@ -1,10 +1,13 @@
-rule Evascape { 
+rule Windows_Evascape_enderware {
     meta : 
-        author = "Z4que - All rights reverved"
-        date = "13/12/2024"
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "158905909346EC005F7CE34D56B285F3A6464A47A860283F01AB318E726ECC2C"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/enderware/Evascape.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A 50 }
         
         // OnDblClickШB
         $a1 = { 4F 6E 44 62 6C 43 6C 69 63 6B D0 A8 42 }
@@ -31,7 +34,6 @@ rule Evascape {
         $a8 = { 69 6D 6D 33 32 2E 64 6C 6C }
 
     condition : 
-        ( $header at 0 ) 
-        and 7 of ( $a* ) 
-        and filesize < 1000KB
+        5 of ( $a* ) 
+        and filesize < 1MB
 }

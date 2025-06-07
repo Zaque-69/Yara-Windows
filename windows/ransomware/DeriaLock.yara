@@ -1,10 +1,13 @@
-rule DeriaLock {
-	meta : 
-		author = "Z4que - All rights reserved"
-		date = "13/12/2024"
+rule Windows_DeriaLock_ransomware {
+    meta : 
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "402060C10CEBBC48FD9C1BB35DB8434F091DB89F45AC25E775AD0308892B0B3E"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/DeriaLock.zip"
+        os = "Windows"
 
 	strings:
-		$header = { 4D 5A }
 		
 		// http://wallup.net
 		$a1 = { 68 74 74 70 3A 2F 2F 77 61 6C 6C 75 70 2E 6E 65 74 }
@@ -46,7 +49,7 @@ rule DeriaLock {
 		$a13 = { 5C 50 72 6F 6A 65 63 74 73 5C 4C 4F 47 4F 4E 5C 4C 4F 47 4F 4E 5C 6F 62 6A 5C 44 65 62 75 67 5C 4C 4F 47 4F 4E 2E 70 64 62 }
 
 	condition : 
-		($header at 0 ) 
-		and 11 of ($a*) 
-		and filesize < 5000KB
+
+		8 of ($a*) 
+		and filesize < 5MB
 }

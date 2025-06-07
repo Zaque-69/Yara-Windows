@@ -1,10 +1,13 @@
-rule Hydra {
+rule Windows_Hydra_joke {
     meta : 
-        author = "Z4que - All rights reverved"
-		date = "23/02/2024"
+		creation_date = "23/02/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "9CCBD1B53E61E5722DEDF43F48EFA2B94204D145EFE1A41EA2ADF8BA75F5F39A"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/jokes/Hydra.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A }
 
         // Hydra.exe
         $a1 = { 48 79 64 72 61 2e 65 78 65 }
@@ -37,8 +40,7 @@ rule Hydra {
         $a10 = { 57 00 69 00 50 00 65 00 74 }
    
     condition : 
-        ( $header at 0 ) 
-        and 8 of ( $a* ) 
+        8 of ( $a* ) 
         and filesize < 1000KB
 
 }

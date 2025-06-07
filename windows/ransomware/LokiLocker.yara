@@ -1,8 +1,11 @@
-rule lokiLocker_Positive{
-	meta : 
-		author = "Z4que - All rights reserved"
-		date = "27/01/2024"
-
+rule Windows_lokiLocker_ransomware {
+    meta : 
+		creation_date = "27/01/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "C31A7A441EB7EECFECE23320460126031A9B0D568448ECE8D202E345B9D7D6E2"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/DeriaLock.zip"
+        os = "Windows"
 	strings:
 		$header = { 4D 5A }
 

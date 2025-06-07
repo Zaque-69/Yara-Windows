@@ -1,7 +1,11 @@
-rule Koteyka2 { 
+rule Windows_Koteyka2_enderware {
     meta : 
-        author = "Z4que - All rights reverved"
-		date = "13/12/2024"
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "2D7A7C09D473ED50EBF32E4BDE60C55F0C5969DF2ACF697FB8D8E19883C68336"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/enderware/Koteyka2.zip"
+        os = "Windows"
 
     strings : 
         $header = { 4D 5A 40 }
@@ -25,7 +29,6 @@ rule Koteyka2 {
         $a6 = { 42 00 42 00 43 00 41 00 4E 00 43 00 45 00 4C }
 
     condition : 
-        ( $header at 0 ) 
-        and 5 of ( $a* ) 
-        and filesize < 8000KB
+        4 of ( $a* ) 
+        and filesize < 8MB
 }

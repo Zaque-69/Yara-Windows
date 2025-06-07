@@ -1,8 +1,12 @@
-rule PowerPoint_positive {
+rule Windows_PowerPoint_ransomware {
     meta : 
-       author = "Z4que - All rights reverved"
-	  date = "7/03/2024"
-
+		creation_date = "07/03/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "CFC5E11781E05A1DE5AEEE5F42A79CC92BB58609E2505AD60B133F05F062E28C"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/PowerPoint.zip"
+        os = "Windows"
+        
     strings : 
         $header = { 4D 5A }
 
@@ -22,6 +26,6 @@ rule PowerPoint_positive {
             $a5 = { 5C 73 79 73 74 6D 2E 74 78 74 }
 
     condition : 
-        ( $header at 0 ) 
-        and 1 of ( $a* ) 
+        3 of ( $a* ) 
+        and filesize < 200KB
 }

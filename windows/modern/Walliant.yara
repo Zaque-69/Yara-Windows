@@ -1,7 +1,11 @@
-rule Walliant {
+rule Windows_Walliant_modern {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "13/12/2024"
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "A23A98506925099E6835EBF625A4D457C4FC2314D03FED2A3A72CD2C374CC41F"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/modern/Walliant.zip"
+        os = "Windows"
 
     strings : 
         $header = { 4D 5A }
@@ -34,7 +38,6 @@ rule Walliant {
         $a9 = { 68 74 74 70 3A 2F 2F 6F 63 73 70 2E 64 69 67 69 63 65 72 74 2E 63 6F 6D }
 
     condition : 
-        ( $header at 0 ) 
-        and 7 of ( $a* )
+        7 of ( $a* )
         and filesize < 6MB
 }

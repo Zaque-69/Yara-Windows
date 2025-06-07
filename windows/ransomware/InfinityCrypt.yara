@@ -1,10 +1,13 @@
-rule InfinityCrypt {
-	meta : 
-		author = "Z4que - All rights reserved"
-		date = "13/12/2024"
+rule Windows_InfinityCrypt_ransomware {
+    meta : 
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "54AFA9249D1DF19BDCC3D0F4AAA3229D77FDC618411A9524672F1E3BE231BB20"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/InfinityCrypt.zip"
+        os = "Windows"
 
 	strings:
-		$header = { 4D 5A }
 		
 		// YOU BECAME A VICTIM OF THE INFINITYLOCK RANSOMWARE!
 		$a1 = { 59 4F 55 20 42 45 43 41 4D 45 20 41 20 56 49 43 54 49 4D 20 4F 46 20 54 48 45 20 49 4E 46 49 4E 49 54 59 4C 4F 43 4B 20 52 41 4E 53 4F 4D 57 41 52 45 21 }
@@ -28,7 +31,6 @@ rule InfinityCrypt {
 		$a7 = { 43 00 3A 00 5C 00 55 00 73 00 65 00 72 00 73 00 5C 00 00 80 87 3E 00 65 00 6E 00 63 00 72 00 79 00 70 00 74 00 2E 00 65 00 78 00 65 }
 
 	condition : 
-		($header at 0 ) 
-		and 6 of ($a*) 
+		5 of ($a*)
 		and filesize < 300KB
 }

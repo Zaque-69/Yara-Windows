@@ -1,10 +1,13 @@
-rule DesktopBoom { 
-        meta : 
-        author = "Z4que - All rights reverved"
-		date = "13/12/2024"
+rule Windows_DesktopBoom_enderware {
+    meta : 
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "1EE60C65A74483579216CE3EA6C46FE04EF6E1D4B734735DA4ADABA5D1515D8E"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/enderware/Deskbottom.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A 50 }
         
         // C:\Windows\WinSxS\amd64_microsoft-windows-shell-wallpaper-theme2_31bf3856ad364e35_6.3.9600.16384_none_c7984c4f78e5126d\
         $a1 = { 43 3A 5C 57 69 6E 64 6F 77 73 5C 57 69 6E 53 78 53 5C 61 6D 64 36 34 5F 6D 69 63 72 6F 73 6F 66 74 2D 77 69 6E 64 6F 77 73 2D 73 68 65 6C 6C 2D 77 61 6C 6C 70 61 70 65 72 2D 74 68 65 6D 65 32 5F 33 31 62 66 33 38 35 36 61 64 33 36 34 65 33 35 5F 36 2E 33 2E 39 36 30 30 2E 31 36 33 38 34 5F 6E 6F 6E 65 5F 63 37 39 38 34 63 34 66 37 38 65 35 31 32 36 64 5C }
@@ -36,27 +39,7 @@ rule DesktopBoom {
         // G.r.e.e.n...O.l.i.v.e
         $a10 = { 47 00 72 00 65 00 65 00 6E 00 05 00 4F 00 6C 00 69 00 76 00 65 }
 
-        // img8.jpg
-        $img8 = { 69 6D 67 38 2E 6A 70 67 }
-            
-        // img9.jpg
-        $img9 = { 69 6D 67 39 2E 6A 70 67 }
-        
-        // img10.jpg
-        $img10 = { 69 6D 67 31 30 2E 6A 70 67 }
-        
-        // img11.jpg
-        $img11 = { 69 6D 67 31 31 2E 6A 70 67 }
-        
-        // img12.jpg
-        $img12 = { 69 6D 67 31 32 2E 6A 70 67 }
-        
-        // img13.jpg
-        $img13 = { 69 6D 67 31 33 2E 6A 70 67 }
-    
     condition : 
-        ( $header at 0 ) 
-        and 8 of ( $a* ) 
-        and any of ( $img* )
-        and filesize < 5000KB
+        6 of ( $a* ) 
+        and filesize < 5MB
 }

@@ -1,7 +1,12 @@
-rule BtcMiner_Virus_Positive{
-	meta : 
-		author = "Z4que - All rights reverved"
-		date = "14/12/2024"
+rule Windows_BtcMiner_miner {
+    meta : 
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "B3267019F9B65A85A1AE97535EACF7D40637B0482654020459A563F1EB8522B4"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/modern/Walliant.zip"
+        os = "Windows"
+
 
 	strings:
 		$header = { 4D 5A }
@@ -22,6 +27,5 @@ rule BtcMiner_Virus_Positive{
 		$a5 = { 43 00 3A 00 5C 00 55 00 73 00 65 00 72 00 73 00 5C }
 
 	condition : 
-		( $header at 0 ) 
-		and all of ( $a* ) 
+		all of them 
 }

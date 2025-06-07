@@ -1,10 +1,13 @@
-rule RainbowIsKawaii {
+rule Windows_RainbowIsKawaii_joke {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "13/12/2024"
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "FDAD681DA809D3EA4811FA9EB01D76FE6C154D2415AC51D85BC1956303EEB282"
+	    sample = ""
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A }
 
         // H.a.c.k.2.0.1.7
         $a1 = { 48 00 61 00 63 00 6B 00 32 00 30 00 31 00 37 }
@@ -37,7 +40,6 @@ rule RainbowIsKawaii {
         $a10 = { 43 6F 6F 6B 69 65 43 6C 69 63 6B 65 72 5F 48 61 63 6B 32 30 31 37 5C 6F 62 6A 5C 44 65 62 75 67 5C 43 6F 6F 6B 69 65 43 6C 69 63 6B 65 72 5F 48 61 63 6B 32 30 31 37 2E 70 64 62 }
 
     condition : 
-        ( $header at 0 ) 
-        and 8 of ( $a* )
-        and filesize < 1000KB
+        6 of ( $a* )
+        and filesize < 1MB
 }

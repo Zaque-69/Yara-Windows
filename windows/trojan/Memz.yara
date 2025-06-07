@@ -1,10 +1,13 @@
-rule Memz {
+rule Windows_MEMZ_trojan {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "14/12/2024"
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "EA449D65F041CB6D8173FE24F819E2F5773687698C2079EDD0A86F5AFE26932F"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/trojans/MEMZ.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A }
 
         // Your computer has been trashed by the MEMZ trojan
         $a1 = { 59 6F 75 72 20 63 6F 6D 70 75 74 65 72 20 68 61 73 20 62 65 65 6E 20 74 72 61 73 68 65 64 20 62 79 20 74 68 65 20 4D 45 4D 5A 20 74 72 6F 6A 61 6E }
@@ -37,7 +40,6 @@ rule Memz {
         $a10 = { 23 4D 61 6B 65 4D 61 6C 77 61 72 65 47 72 65 61 74 41 67 61 69 6E }
 
     condition : 
-        ( $header at 0 ) 
-        and 8 of ( $a* )
+        6 of ( $a* )
         and filesize < 100KB
 }

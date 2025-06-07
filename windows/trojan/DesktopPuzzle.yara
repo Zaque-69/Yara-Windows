@@ -1,10 +1,13 @@
-rule DesktopPuzzle {
+rule Windows_DesktopPuzzle_trojan {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "14/12/2024"
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "930FC8A5C347C5B547A24C899366E87B94E5DFFD042B4CF5F920F01252186422"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/trojans/DesktopPuzzle.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A 50 }
 
         // SOFTWARE\Borland\Delphi\RTL.FPUMaskValue
         $a1 = { 53 4F 46 54 57 41 52 45 5C 42 6F 72 6C 61 6E 64 5C 44 65 6C 70 68 69 5C 52 54 4C 00 46 50 55 4D 61 73 6B 56 61 6C 75 65 } 
@@ -31,6 +34,6 @@ rule DesktopPuzzle {
         $a8 = { 59 6F 75 20 68 61 76 65 20 74 6F 20 66 69 6E 69 73 68 20 74 68 69 73 20 73 6C 69 64 69 6E 67 20 74 69 6C 65 20 70 75 7A 7A 6C 65 20 62 65 66 6F 72 65 20 79 6F 75 20 63 61 6E 20 63 6F 6E 74 69 6E 75 65 20 77 68 61 74 65 76 65 72 20 69 74 20 69 73 20 79 6F 75 27 72 65 20 64 6F 69 6E 67 20 21 }
 
     condition : 
-        ( $header at 0 ) 
-        and 7 of ( $a* )
+        5 of ( $a* )
+        and filesize < 300KB
 }

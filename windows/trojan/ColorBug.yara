@@ -1,10 +1,13 @@
-rule ColorBug {
+rule Windows_ColorBug_trojan {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "14/12/2024"
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "CB3319DA5944692F5509B67DE9026A672C729B85D6393CEBED1935EDB98E441A"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/trojans/ColorBug.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A 50 }
 
         // SOFTWARE\Borland\Delphi\RTL.FPUMaskValue
         $a1 = { 53 4F 46 54 57 41 52 45 5C 42 6F 72 6C 61 6E 64 5C 44 65 6C 70 68 69 5C 52 54 4C 00 46 50 55 4D 61 73 6B 56 61 6C 75 65 } 
@@ -19,6 +22,6 @@ rule ColorBug {
         $a4 = { 43 6F 6E 74 72 6F 6C 20 50 61 6E 65 6C 5C 43 6F 6C 6F 72 73 }
 
     condition : 
-        ( $header at 0 ) 
-        and all of ( $a* )
+        all of them
+        and filesize < 70KB
 }

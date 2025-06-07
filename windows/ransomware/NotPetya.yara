@@ -1,10 +1,13 @@
-rule notpetya_Positive {
-	meta : 
-		author = "Z4que - All rights reserved"
-		date = "14/12/2024"
+rule Windows_notpetya_ransomware {
+    meta : 
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "D00A590F33952BA3D9DD3997DBC3DA7253F2ECDE2D33ACF53A42FAEEDAAEB2F1"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/Petya.A.zip"
+        os = "Windows"
 
 	strings:
-		$header = { 4D 5A }
 
 		// S.e.n.d. .y.o.u.r. .B.i.t.c.o.i.n. .w.a.l.l.e.t. .I.D
 		$a1 = { 53 00 65 00 6E 00 64 00 20 00 79 00 6F 00 75 00 72 00 20 00 42 00 69 00 74 00 63 00 6F 00 69 00 6E 00 20 00 77 00 61 00 6C 00 6C 00 65 00 74 00 20 00 49 00 44 }
@@ -28,7 +31,6 @@ rule notpetya_Positive {
 		$a7 = { 4F 6F 6F 70 73 2C 20 79 6F 75 72 20 69 6D 70 6F 72 74 61 6E 74 20 66 69 6C 65 73 20 61 72 65 20 65 6E 63 72 79 70 74 65 64 }
 
 	condition : 
-		( $header at 0 ) 
-		and 5 of ( $a* )
+		5 of ( $a* )
 		and filesize < 500KB
 }

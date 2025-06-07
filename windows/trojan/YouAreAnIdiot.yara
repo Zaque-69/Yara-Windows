@@ -1,7 +1,11 @@
-rule YouAreAnIdiot_positive {
+rule Windows_YouAreAnIdiot_trojan {
     meta : 
-        author = "Z4que - All rights reverved"
-        date = "14/12/2024"
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "58A0ED48C23524DC3654F0D89D7F56DCEF124243FAD567BEBB787926ADBDD90A"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/trojans/YouAreAnIdiot.zip"
+        os = "Windows"
 
     strings : 
         $header = { 4D 5A }
@@ -22,6 +26,6 @@ rule YouAreAnIdiot_positive {
         $a5 = { 49 00 20 00 74 00 68 00 69 00 6E 00 6B 00 20 00 79 00 6F 00 75 00 20 00 61 00 72 00 65 00 20 00 61 00 6E 00 20 00 69 00 64 00 69 00 6F 00 74 }
 
         condition : 
-            ( $header at 0 ) 
-            and all of ( $a* )
+            all of them
+            and filesize < 500KB
 }

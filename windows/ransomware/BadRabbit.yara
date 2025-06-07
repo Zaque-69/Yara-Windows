@@ -1,10 +1,13 @@
-rule BadRabbit {
+rule Windows_BadRabbit_ransomware {
     meta : 
-       author = "Z4que - All rights reverved"
-	  date = "9/11/2024"
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "9AD33C230D72890B888846B68EC0159B0C3149F7F034B2B67D1AB66E937DC44E"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/BadRabbit.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A }
 
         // Fast decoding Code from Chris Anderson
         $a1 = { 46 61 73 74 20 64 65 63 6F 64 69 6E 67 20 43 6F 64 65 20 66 72 6F 6D 20 43 68 72 69 73 20 41 6E 64 65 72 73 6F 6E }
@@ -28,6 +31,6 @@ rule BadRabbit {
         $a7 = { 68 74 74 70 3A 2F 2F 63 72 6C 2E 74 68 61 77 74 65 2E 63 6F 6D 2F 54 68 61 77 74 65 54 69 6D 65 73 74 61 6D 70 69 6E 67 }
 
     condition : 
-        ( $header at 0 ) 
-        and 7 of ( $a* ) 
+        all of them
+        and filseize < 500KB
 }

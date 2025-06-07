@@ -1,10 +1,13 @@
-rule FreeYoutubeDownloader {
+rule Windows_FreeYoutubeDownloader_trojan {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "7/03/2024"
+		creation_date = "07/03/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "BDFC3236C467738FECD7D4742D4AC740A96026749CCBE057D0CEA06DF2032545"
+	    sample = ""
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A }
 
         // \Microsoft\Internet Explorer\Quick Launch
         $a1 = { 5C 4D 69 63 72 6F 73 6F 66 74 5C 49 6E 74 65 72 6E 65 74 20 45 78 70 6C 6F 72 65 72 5C 51 75 69 63 6B 20 4C 61 75 6E 63 68 }
@@ -12,8 +15,8 @@ rule FreeYoutubeDownloader {
         // SMART INSTALL MAKER
         $a2 = { 53 4D 41 52 54 20 49 4E 53 54 41 4C 4C 20 4D 41 4B 45 52 }
 
-        // sim.exe
-        $a3 = { 73 69 6D 2E 65 78 65 }
+        // Would you like to restart now?
+        $a3 = { 57 6F 75 6C 64 20 79 6F 75 20 6C 69 6B 65 20 74 6F 20 72 65 73 74 61 72 74 20 6E 6F 77 3F }
 
         // Copyright 1995-2002 Jean-loup Gailly
         $a4 = { 43 6F 70 79 72 69 67 68 74 20 31 39 39 35 2D 32 30 30 32 20 4A 65 61 6E 2D 6C 6F 75 70 20 47 61 69 6C 6C 79 }
@@ -36,11 +39,7 @@ rule FreeYoutubeDownloader {
         // or click Back if you want to review or change any settings
         $a10 = { 6F 72 20 63 6C 69 63 6B 20 42 61 63 6B 20 69 66 20 79 6F 75 20 77 61 6E 74 20 74 6F 20 72 65 76 69 65 77 20 6F 72 20 63 68 61 6E 67 65 20 61 6E 79 20 73 65 74 74 69 6E 67 73 }
 
-        // Would you like to restart now?
-        $a11 = { 57 6F 75 6C 64 20 79 6F 75 20 6C 69 6B 65 20 74 6F 20 72 65 73 74 61 72 74 20 6E 6F 77 3F }
-
     condition : 
-        ( $header at 0 ) 
-        and 9 of ( $a* ) 
+        6 of ( $a* ) 
         and filesize < 1MB
 }

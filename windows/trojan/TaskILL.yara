@@ -1,10 +1,13 @@
-rule TaskILL {
+rule Windows_TaskILL_trojan {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "14/12/2024"
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "1342649600202996256740C226588026A143209EF082B4B3D2474ACAB0120F97"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/trojans/TaskILL.zip"
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A }
 
         // T.a.s.k.I.L.L...e.x.e
         $a1 = { 54 00 61 00 73 00 6B 00 49 00 4C 00 4C 00 2E 00 65 00 78 00 65 }
@@ -19,7 +22,6 @@ rule TaskILL {
         $a4 = { 74 00 61 00 73 00 6B 00 6D 00 67 00 72 }
 
     condition : 
-        ( $header at 0 ) 
-        and all of ( $a* )
+        all of them
         and filesize < 100KB
 }

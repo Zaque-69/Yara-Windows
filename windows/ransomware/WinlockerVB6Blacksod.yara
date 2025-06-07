@@ -1,10 +1,13 @@
-rule WinlockerVB6Blacksod {
-	meta : 
-		author = "Z4que - All rights reserved"
-		date = "14/12/2024"
+rule Windows_WinlockerVB6Blacksod_ransomware {
+    meta : 
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "5B1E33DC779C5C063F2EA66EE36308857B3781558A1198C0D1960A43E0CEC9AD"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/Winlocker.VB6.Blacksod.zip"
+        os = "Windows"
 
 	strings:
-		$header = { 4D 5A }
 
 		// Software\Caphyon\Advanced Installer\
 		$a1 = { 53 6F 66 74 77 61 72 65 5C 43 61 70 68 79 6F 6E 5C 41 64 76 61 6E 63 65 64 20 49 6E 73 74 61 6C 6C 65 72 5C }
@@ -40,7 +43,6 @@ rule WinlockerVB6Blacksod {
 		$a11 = { 43 6F 70 79 72 69 67 68 74 20 28 63 29 20 31 39 39 32 2D 32 30 30 34 20 62 79 20 50 2E 4A 2E 20 50 6C 61 75 67 65 72 2C 20 6C 69 63 65 6E 73 65 64 20 62 79 20 44 69 6E 6B 75 6D 77 61 72 65 2C 20 4C 74 64 2E 20 41 4C 4C 20 52 49 47 48 54 53 20 52 45 53 45 52 56 45 44 }
 
 	condition : 
-		$header at 0 
-		and 9 of ($a*)
+		9 of ($a*)
 		and filesize < 3MB
 }

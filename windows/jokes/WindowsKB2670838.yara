@@ -1,10 +1,13 @@
-rule WindowsKB2670838 {
+rule Windows_WindowsKB2670838_joke {
     meta : 
-        author = "Z4que - All rights reverved"
-	    date = "13/12/2024"
+		creation_date = "13/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "B8F17DF5311BB136C799C669CF2B5A2D0CAA45918217F93A452A698AD26B0950"
+	    sample = ""
+        os = "Windows"
 
     strings : 
-        $header = { 4D 5A }
 
         // Ducky
         $a1 = { 44 75 63 6B 79 }
@@ -31,7 +34,6 @@ rule WindowsKB2670838 {
         $a8 = { 35 34 30 30 63 32 38 65 2D 64 36 62 35 2D 34 34 31 31 2D 39 32 63 36 2D 36 35 30 31 35 35 33 38 32 31 37 39 }
 
     condition : 
-        ( $header at 0 ) 
-        and 6 of ( $a* )
-        and filesize < 8000KB
+        6 of ( $a* )
+        and filesize < 8MB
 }

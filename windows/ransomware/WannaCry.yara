@@ -1,10 +1,13 @@
-rule WannaCry {
-	meta : 
-		author = "Z4que - All rights reserved"
-		date = "14/12/2024"
+rule Windows_WannaCrypt0r_ransomware {
+    meta : 
+		creation_date = "14/12/2024"
+        update_date = "07/06/2025"
+        github = "https://github.com/Zaque-69"
+	    fingerprint = "46D1E15FC74A9D62CAB9FBCFFE332F322D5F692DFA68B4F8091F56A91F31189D"
+	    sample = "https://github.com/Endermanch/MalwareDatabase/blob/master/ransomwares/WannaCrypt0r.zip"
+        os = "Windows"
 
 	strings:
-		$header = { 4D 5A }
 
 		// WANACRY!
 		$a1 = { 57 41 4E 41 43 52 59 21 }
@@ -28,7 +31,6 @@ rule WannaCry {
 		$a7 = { 6D 73 67 2F 6D 5F 72 6F 6D 61 6E 69 61 6E 2E 77 6E 72 79 }
 
 	condition : 
-		$header at 0 
-		and 6 of ($a*)
+		5 of ($a*)
 		and filesize < 4MB
 }
