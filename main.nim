@@ -52,7 +52,7 @@ proc main() =
     var
         argument : string = paramStr(1) 
         rulesFolder : seq[string] = fileList(fmt"windows") 
-        rules : seq[string] = fileList(fmt"global")
+        rules : seq[string] = @[]
 
     # Extracting the rules from your specific OS
     for folder in rulesFolder : 
